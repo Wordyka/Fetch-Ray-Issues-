@@ -28,7 +28,7 @@ def main():
             file.write(f"{issue_number}\n")
 
     # Print the results to the console
-    print("Issues with linked PRs:")
+    print("\n\n List of issues with linked PRs:")
     for issue_number in issues_with_linked_prs:
         print(issue_number)
 
