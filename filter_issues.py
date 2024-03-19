@@ -39,7 +39,7 @@ def search_prs_mentioning_issue(g, repo, issue_number):
         return issue_number
     return None
 
-def process_issues(token, issue_numbers):
+def process_issues(g, repo, issue_numbers):
     """
     Process a list of issue numbers to find and print those that have linked PRs.
     
