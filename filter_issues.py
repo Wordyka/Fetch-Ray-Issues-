@@ -1,7 +1,7 @@
 from github import Github
 import time
 
-def check_and_wait_for_rate_limits(search=False):
+def check_and_wait_for_rate_limits(g, search=False):
     """
     Check the GitHub API rate limits and wait if we're close to hitting them.
     This prevents the script from being blocked due to exceeding the rate limits.
@@ -20,7 +20,7 @@ def check_and_wait_for_rate_limits(search=False):
         # print(f"Approaching rate limit. Waiting for {int(wait_time)} seconds.")
         time.sleep(wait_time)
 
-def search_prs_mentioning_issue(issue_number):
+def search_prs_mentioning_issue(g, repo, issue_number):
     """
     Search for pull requests mentioning a given issue number using GitHub's Search API.
     Includes rate limit checks specifically for the search API.
@@ -29,7 +29,7 @@ def search_prs_mentioning_issue(issue_number):
     :return: The issue number if linked PRs are found, None otherwise.
     """
     # Check and wait if we're close to the search API rate limit before making a search request
-    check_and_wait_for_rate_limits(search=True)
+    check_and_wait_for_rate_limits(g, search=True)
     
     # Perform the search query
     prs = g.search_issues(f'{issue_number} type:pr repo:ray-project/ray')
@@ -51,8 +51,8 @@ def process_issues(token, issue_numbers):
     issues_with_linked_prs = []
     for issue_number in issue_numbers:
         # Check and wait if we're close to the core API rate limit before fetching each issue
-        check_and_wait_for_rate_limits()
-        result = search_prs_mentioning_issue(issue_number)
+        check_and_wait_for_rate_limits(g)
+        result = search_prs_mentioning_issue(g, repo, issue_number)
         if result:
             issues_with_linked_prs.append(result)
     return issues_with_linked_prs
