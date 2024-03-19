@@ -19,8 +19,9 @@ To set up and run this project:
 1. Make sure Python 3.x is installed on your system.
 
 2. Install the required Python packages:
-##
-    pip install requests PyGithub
+```bash
+pip install requests PyGithub
+```
 
 3. Generate a GitHub Personal Access Token (PAT) with the appropriate permissions to read from the repository.
 
@@ -29,7 +30,6 @@ To set up and run this project:
 ## Usage
 
 Run the program via the command line:
-
-##
-    python main.py
-
+```bash
+python main.py
+```
