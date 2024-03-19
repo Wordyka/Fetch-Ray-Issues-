@@ -46,7 +46,6 @@ def process_issues(g, repo, issue_numbers):
     :param issue_numbers: A list of issue numbers to process.
     :return: A list of issue numbers that have linked PRs.
     """
-    g = Github(token)
     repo = g.get_repo("ray-project/ray")
     issues_with_linked_prs = []
     for issue_number in issue_numbers:

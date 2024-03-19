@@ -25,7 +25,7 @@ def fetch_and_process_issues(token, owner="ray-project", repo="ray", issue_numbe
 
         # Check if we've reached an empty page indicating no more issues
         if not issues:
-            print(f"Issues fetched successfully. Ssvrf.")
+            print(f"Issues fetched successfully. Saved in "+issue_numbers_file_path)
             break
 
         # Filter issues by title starting with [core] and write their numbers to a file
