@@ -1,27 +1,16 @@
 import requests
 
-# Repository details
-owner = "ray-project"
-repo = "ray"
-
-# Personal access token for authentication to increase rate limit or access private repositories
-# token = "YOUR_GITHUB_TOKEN"
-token = "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"
-
-headers = {
-    "Authorization": f"Bearer {token}",
-    "Accept": "application/vnd.github+json"
-}
-
-# Path to the file where issue numbers will be stored
-issue_numbers_file_path = "issue_numbers.txt"
-
-# Open the file in write mode to clear it or create it if it doesn't exist
-with open(issue_numbers_file_path, 'w') as file:
-    pass  # This simply clears the file
-
 # Function to fetch and process issues
-def fetch_and_process_issues():
+def fetch_and_process_issues(token, owner="ray-project", repo="ray", issue_numbers_file_path="issue_numbers.txt"):
+    headers = {
+        "Authorization": f"Bearer {token}",
+        "Accept": "application/vnd.github+json"
+    }
+
+    # Open the file in write mode to clear it or create it if it doesn't exist
+    with open(issue_numbers_file_path, 'w') as file:
+        pass  # This simply clears the file
+    
     # Loop through the first 100 pages of issues
     for page in range(1, 101):
         url = f"https://api.github.com/repos/{owner}/{repo}/issues"

@@ -1,11 +1,6 @@
 from github import Github
 import time
 
-# Replace 'YOUR_GITHUB_TOKEN' with your actual GitHub Personal Access Token.
-# g = Github("YOUR_GITHUB_TOKEN")
-g = Github("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")
-repo = g.get_repo("ray-project/ray")
-
 def check_and_wait_for_rate_limits(search=False):
     """
     Check the GitHub API rate limits and wait if we're close to hitting them.
@@ -44,13 +39,15 @@ def search_prs_mentioning_issue(issue_number):
         return issue_number
     return None
 
-def process_issues(issue_numbers):
+def process_issues(token, issue_numbers):
     """
     Process a list of issue numbers to find and print those that have linked PRs.
     
     :param issue_numbers: A list of issue numbers to process.
     :return: A list of issue numbers that have linked PRs.
     """
+    g = Github(token)
+    repo = g.get_repo("ray-project/ray")
     issues_with_linked_prs = []
     for issue_number in issue_numbers:
         # Check and wait if we're close to the core API rate limit before fetching each issue
