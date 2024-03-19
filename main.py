@@ -1,5 +1,6 @@
 from fetch_issues import fetch_and_process_issues
 from filter_issues import process_issues
+from github import Github
 import os
 
 def main():
