@@ -37,6 +37,7 @@ def normally_distributed_sampling(file_path, sample_size=100, total_pages=10, is
             file.write(issue + "\n")
 
     print("\n\nSaves the sampled issue numbers to sample_issue_numbers.txt")
+    return sampled_issues
 
 def main():
     # Define the token and repository details
@@ -62,14 +63,16 @@ def main():
         for issue_number in issues_with_linked_prs:
             file.write(f"{issue_number}\n")
 
-    # Print the results to the console
-    print("\n\nList of issues with linked PRs:")
-    for issue_number in issues_with_linked_prs:
-        print(issue_number)
+    # Issues Filtered Successfully.
+    print("\nIssues Filtered Successfully.")
     
+    # Generate a normally distributed sample and print the sampled issues
+    sampled_issues = normally_distributed_sampling("issue_numbers.txt")
+    print("\n\nSampled issues through normally distributed sampling:")
+    for issue in sampled_issues:
+        print(issue)
+   
 
-    # After processing issues, generate a normally distributed sample
-    normally_distributed_sampling("issue_numbers.txt")
 
 if __name__ == "__main__":
     main()
