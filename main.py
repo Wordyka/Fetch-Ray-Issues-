@@ -41,7 +41,7 @@ def normally_distributed_sampling(file_path, sample_size=100, total_pages=10, is
 def main():
     # Define the token and repository details
     # Replace 'your_default_token' with a valid token
-    token = os.getenv('GITHUB_TOKEN', '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') 
+    token = os.getenv('GITHUB_TOKEN', 'your_default_token') 
 
     # Define the Github instance
     g = Github(token)
