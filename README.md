@@ -4,13 +4,16 @@ This project is designed to interface with the GitHub API to fetch issues from t
 
 ## Components
 
-- `fetch_issues.py`: This script connects to the GitHub API and retrieves issues that are both closed and labeled with "bug" and "core". It specifically looks for issues with titles that start with "[core]" and records their issue numbers in `issue_numbers.txt`.
+- `fetch_issues.py`: Retrieves closed issues labeled "bug" and "core" from the GitHub repository. It looks specifically for issues whose titles start with "[core]" and records their numbers in `issue_numbers.txt`.
 
-- `filter_issues.py`: This script reads the issue numbers from `issue_numbers.txt` and uses the GitHub Search API to identify which of these issues have linked pull requests. It outputs a list of issue numbers that have associated PRs, one per line.
+- `filter_issues.py`: Reads issue numbers from `issue_numbers.txt` and searches for linked pull requests using the GitHub Search API. The results are output to the console.
 
-- `main.py`: Serves as the entry point to run the scripts in sequence. First, it executes `fetch_issues.py` to collect the issue numbers, then it runs `filter_issues.py` to filter and display issues with linked PRs.
+- `main.py`: The entry point for running the scripts. It sequentially executes `fetch_issues.py` and `filter_issues.py`, carrying out the issue fetching and filtering process. Additionally, it performs a normally distributed random sampling of the filtered issue numbers and saves the sample to `sample_issue_numbers.txt`.
 
-- `issue_numbers.txt`: A text file that stores issue numbers fetched by `fetch_issues.py`. This file is overwritten each time `fetch_issues.py` runs.
+- `issue_numbers.txt`: A generated text file that serves as a record of issue numbers fetched by `fetch_issues.py`.
+
+- `sample_issue_numbers.txt`: The output file containing a sample of issue numbers selected through normally distributed random sampling.
+
 
 ## Setup
 
@@ -20,12 +23,12 @@ To set up and run this project:
 
 2. Install the required Python packages:
 ```bash
-pip install requests PyGithub
+pip install requests PyGithub numpy
 ```
 
 3. Generate a GitHub Personal Access Token (PAT) with the appropriate permissions to read from the repository.
 
-4. Replace the placeholder token in `fetch_issues.py` and `filter_issues.py` with your actual PAT.
+4. Replace the placeholder token in `main.py` with your actual PAT.
 
 ## Usage
 
@@ -33,3 +36,4 @@ Run the program via the command line:
 ```bash
 python main.py
 ```
+

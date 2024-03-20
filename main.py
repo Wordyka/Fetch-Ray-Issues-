@@ -36,10 +36,12 @@ def normally_distributed_sampling(file_path, sample_size=100, total_pages=10, is
         for issue in sampled_issues:
             file.write(issue + "\n")
 
+    print("\n\nSaves the sampled issue numbers to sample_issue_numbers.txt")
+
 def main():
     # Define the token and repository details
     # Replace 'your_default_token' with a valid token
-    token = os.getenv('GITHUB_TOKEN', 'your_default_token') 
+    token = os.getenv('GITHUB_TOKEN', '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') 
 
     # Define the Github instance
     g = Github(token)
@@ -65,6 +67,7 @@ def main():
     for issue_number in issues_with_linked_prs:
         print(issue_number)
     
+
     # After processing issues, generate a normally distributed sample
     normally_distributed_sampling("issue_numbers.txt")
 
