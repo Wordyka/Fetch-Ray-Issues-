@@ -11,7 +11,13 @@ def fetch_and_process_issues(token, owner="ray-project", repo="ray", issue_numbe
     with open(issue_numbers_file_path, 'w') as file:
         pass  # This simply clears the file
     
-    # Loop through the first 100 pages of issues
+    """
+    Loop through the first 100 pages of issues
+    
+    The range function in Python does not include the stop value,
+    so range(1, 101) will iterate from 1 up to but not including 101.
+    This means it will correctly loop from page 1 to page 100.
+    """
     for page in range(1, 101):
         url = f"https://api.github.com/repos/{owner}/{repo}/issues"
         params = {

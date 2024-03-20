@@ -1,4 +1,3 @@
-from github import Github
 import time
 
 def check_and_wait_for_rate_limits(g, search=False):
